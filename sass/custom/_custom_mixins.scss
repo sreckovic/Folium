@@ -1,0 +1,22 @@
+@mixin htags( $factor: 1 ){
+	h1, h2, h3, h4, h5, h6 {
+		font-family: $htag_family;
+		line-height: $htag_lineheight;
+		font-weight: $htag_weight;
+    color: $color__text-heading;
+	}
+	@for $i from 1 through 6 {
+		h#{$i} {
+			$value: nth($htag_sizes, $i);
+			$size: if( ($value * $factor) < 1, 1, $value * $factor );
+			font-size: $size * 1em;
+			margin: ( nth($htag_vmargins, $i) * 1em ) 0;
+		}
+	}
+	// Set H1 widget titles default size
+	.widget-title, .widgettitle {
+		$default: nth($htag_sizes, 4);
+		$size: if( ($default * $factor) < 1, 1, $default * $factor );
+		font-size: $size * 1em;
+	}
+}
